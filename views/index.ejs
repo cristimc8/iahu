@@ -1,17 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html id = "best-body">
   <head>
     <title><%- title %></title>
     <% include partials/head %>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-  <body onload="setGreeting();" id = "best-body">
+  <body onload="setGreeting();">
   	<% include partials/navbar %>
   	<div class="columns greeting">
-	  <div class="column is-full">
-	  	<h1 class="is-size-1 has-text-weight-semibold" id="greetingText"></h1>
-	  </div>
+      <div class="column is-7" style="background-color: #f0f0f0; border-radius: 4px; left: 0; right: 0; margin: auto;">
+        <div class="iahu" >
+          <img src="/images/resources/logo.png" style="width: 55px; height: 55px;" alt="">
+          <h1 class ="is-size-1 has-text-weight-semibold" style="color: #bf75d1;">Mesengeăr</h1>
+        </div>
+        
+      </div>
+      <br>
 	</div>
+  <div class="columns">
+    <div class="column is-full">
+      <h1 class="is-size-1 has-text-weight-semibold" id="greetingText"></h1>
+    </div>
+  </div>
   <div class="space"></div>
   <div class="room-container">
     <div class="text">

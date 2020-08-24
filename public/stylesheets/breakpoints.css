@@ -1,0 +1,11 @@
+@media screen and (max-width: 852px) {
+	.control input{
+		width: 80% !important;
+	}
+	.room-container{
+		width: 90%;
+	}
+	.chat{
+		max-height: 380px;
+	}
+}

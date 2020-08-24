@@ -12,9 +12,9 @@ const name = tmpName;
 
 socket.emit('new-user', name, roomName);
 
-
 socket.on('chat-msg', data => {
 	appendMsg(data.name + ' > ' + data.message);
+	audioPlay('soundSwap');
 })
 
 socket.on('user-connected', data => {
@@ -25,10 +25,23 @@ socket.on('user-disconnected', data => {
 	appendMsg('L-am pierdut pe ' + data + ' :(');
 })
 
+socket.on('buzz', name => {
+	appendMsg(name + ' BUZZED HARD');
+	audioPlay('buzz');
+})
+
 messageForm.addEventListener('submit', e => {
 	e.preventDefault();
+	if(e.submitter.id == 'buzz'){
+		appendMsg(name + ' BUZZED HARD');
+		socket.emit('buzz', roomName);
+		audioPlay('buzz');
+		return;
+	}
 	const message = messageInput.value;
+	if(message == '') return;
 	appendMsg(name + ' > ' + message);
+	audioPlay('soundSwap');
 	socket.emit('send-msg', message, roomName);
 	messageInput.value = '';
 })
@@ -53,4 +66,16 @@ function generateName(){
 function rememberName(name){
 	var cookieString = "name=" + name+";path=/";
 	document.cookie = cookieString;
+}
+function audioPlay(sound){
+	var soundState = getCookie('sonor');
+	if(soundState == 'off'){
+		return;
+	}
+	var audio = new Audio('/sounds/'+sound+'.mp3');
+	try{
+		audio.play();
+	}
+	catch(err){
+	}
 }

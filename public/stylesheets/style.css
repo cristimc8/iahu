@@ -1,12 +1,16 @@
-*{
-
-}
-
 .greeting{
-	margin-top: 120px;
+	margin-top: 120px !important;
+	max-width: 90vw !important;
+	left: 0;
+	right: 0;
+	margin: auto;
 }
 .room-announce{
-	margin-top: 80px;
+	margin-top: 80px !important;
+	max-width: 90vw !important;
+	left: 0;
+	right: 0;
+	margin: auto;
 }
 .column{
 	text-align: center;
@@ -30,7 +34,7 @@
 
 .chatBar{
 	position: fixed;
-	width: 100%;
+	width: 100vw;
 	bottom: 0;
 	height: 200px;
 	border-top-left-radius: 4px;
@@ -67,6 +71,11 @@
 	padding: 20px;
 	border-radius: 4px;
 	vertical-align: middle;
+	max-width: 90vw;
+	max-height: 280px;
+	overflow: auto;
+	display: flex;
+	flex-direction: column-reverse;
 }
 .space{
 	margin-top: 50px;
@@ -105,4 +114,5 @@
 	background-image: url('/images/resources/doodle-pattern.png');
 	background-repeat: repeat;
 	height: 100vh;
+	background-color: #f0f0f0;
 }

@@ -30,6 +30,9 @@ io.on('connection', socket => {
 			delete rooms[room].users[socket.id];
 		})
 	})
+	socket.on('buzz', (roomName) => {
+		socket.to(roomName).broadcast.emit('buzz', rooms[roomName].users[socket.id]);
+	})
 })
 
 function getUserRooms(socket){
