@@ -77,7 +77,7 @@
 .room-container{
 	background-color: #f5f5f5;
 	border-radius: 4px;
-	width: 80%;
+	width: 60%;
 	position: relative;
 	left: 0;
 	right: 0;
@@ -100,4 +100,9 @@
 .button{
 	margin-bottom: 7.5px;
 	margin-top: 7.5px;
+}
+#best-body{
+	background-image: url('/images/resources/doodle-pattern.png');
+	background-repeat: repeat;
+	height: 100vh;
 }

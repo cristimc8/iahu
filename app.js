@@ -10,6 +10,10 @@ var app = express();
 const rooms = {};
 
 
+function encodeHTML(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+}
+
 io.on('connection', socket => {
 	socket.emit('chat-msg', {message: 'Te-ai conectat la camera.', name: 'Really evolved AI'})
 	socket.on('send-msg', (message, roomName) => {
@@ -53,8 +57,19 @@ app.get('/', async function(req, res, next){
 	})
 })
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
 app.get('/room/:roomId', async function(req, res, next){
 	var roomId = req.params.roomId;
+	roomId = encodeHTML(roomId);
+	var max = Object.keys(rooms).length;
+	if(roomId == 'random' && max > 0){
+		var keys = Object.keys(rooms);
+		var rand = getRandomInt(max);
+		roomId = keys[rand];
+	}
 	if(rooms[roomId] == null) return res.redirect('/');
 	res.render('room', {
 		title: 'Iahu camera',
@@ -63,12 +78,15 @@ app.get('/room/:roomId', async function(req, res, next){
 })
 
 app.post('/new', async function(req, res, next){
-	if(rooms[req.body.room] != null){
+	var room = req.body.room;
+	room = encodeHTML(room);
+	room = room.split('/').join('');
+	if(rooms[room] != null || room == 'random'){
 		res.redirect('/?code=exist');
 	}
-	rooms[req.body.room] = {users: {}};
-	io.emit('room-created', req.body.room);
-	res.redirect('/room/' + req.body.room);
+	rooms[room] = {users: {}};
+	io.emit('room-created', room);
+	res.redirect('/room/' + room);
 
 })
 

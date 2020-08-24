@@ -5,11 +5,11 @@
     <% include partials/head %>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-  <body onload="setGreeting();">
+  <body onload="setGreeting();" id = "best-body">
   	<% include partials/navbar %>
   	<div class="columns greeting">
 	  <div class="column is-full">
-	  	<h1 class="is-size-1" id="greetingText"></h1>
+	  	<h1 class="is-size-1 has-text-weight-semibold" id="greetingText"></h1>
 	  </div>
 	</div>
   <div class="space"></div>
@@ -31,7 +31,7 @@
   <div class="space"></div>
   <div class="room-container">
     <div class="text">
-      <p class = "is-size-2">Creaza o camera noua</p>
+      <p class = "is-size-2">Creeaza o camera noua</p>
       <hr class = "red-line">
     </div>
     <div class="new-room">
@@ -41,7 +41,7 @@
             <input class="input is-primary" type="text" name="room" placeholder="Numele camerei" required>
           </div>
           <div class="control">
-            <button type="submit" class="button is-success is-rounded">Creaza</button>
+            <button type="submit" class="button is-success is-rounded">Creeaza</button>
           </div>
         </div>
       </form>

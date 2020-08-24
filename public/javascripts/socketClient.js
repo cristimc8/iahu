@@ -51,6 +51,6 @@ function generateName(){
 	return randomFirst + " " + randomSecond;
 }
 function rememberName(name){
-	var cookieString = "name=" + name;
+	var cookieString = "name=" + name+";path=/";
 	document.cookie = cookieString;
 }

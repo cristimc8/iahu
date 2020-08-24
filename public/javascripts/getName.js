@@ -1,4 +1,9 @@
-const name = generateName();
+
+var tmpName = getCookie('name');
+if(tmpName == null || tmpName == 'null' || tmpName === undefined){
+	tmpName = generateName();
+}
+const name = tmpName;
 rememberName();
 
 function rememberName(){
