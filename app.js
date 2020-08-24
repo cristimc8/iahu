@@ -3,8 +3,26 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const io = require('socket.io')(8080);
 
 var app = express();
+
+const users = {};
+
+io.on('connection', socket => {
+	socket.emit('chat-msg', {message: 'Te-ai conectat la camera.', name: 'Really evolved AI'})
+	socket.on('send-msg', message => {
+		socket.broadcast.emit('chat-msg', {message: message, name: users[socket.id]});
+	})
+	socket.on('new-user', name => {
+		users[socket.id] = name;
+		socket.broadcast.emit('user-connected', 'S-a conectat ' + name);
+	})
+	socket.on('disconnect', () => {
+		socket.broadcast.emit('user-disconnected', users[socket.id]);
+		delete users[socket.id];
+	})
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
