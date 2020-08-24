@@ -8,6 +8,7 @@ const io = require('socket.io')(8080);
 var app = express();
 
 const users = {};
+const rooms = [];
 
 io.on('connection', socket => {
 	socket.emit('chat-msg', {message: 'Te-ai conectat la camera.', name: 'Really evolved AI'})
@@ -36,8 +37,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', async function(req, res, next){
+	rooms.push({
+		name: '12TBf'
+	})
 	res.render('index', {
-		title: 'Iahu'
+		title: 'Iahu',
+		rooms
 	})
 })
 

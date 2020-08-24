@@ -12,5 +12,36 @@
 	  	<h1 class="is-size-1">Bine ai venit, Mesteacan Lucios</h1>
 	  </div>
 	</div>
+  <div class="space"></div>
+  <div class="room-container">
+    <div class="text">
+      <p class = "is-size-2">Lista cu camere</p>
+      <hr class = "red-line">
+    </div>
+    <div class="actual-rooms">
+      <% for (var i = 0; i < rooms.length; i++) { -%>
+        <a href = "/room/<%-rooms[i].name%>" class = "button is-primary is-rounded"><%-rooms[i].name%></a>
+      <% } -%>
+    </div>
+  </div>
+  <div class="space"></div>
+  <div class="room-container">
+    <div class="text">
+      <p class = "is-size-2">Creeaza o camera noua</p>
+      <hr class = "red-line">
+    </div>
+    <div class="new-room">
+      <form action="/new" method="POST">
+        <div class="field">
+          <div class="control">
+            <input class="input is-primary" type="text" placeholder="Numele camerei">
+          </div>
+          <div class="control">
+            <button type="submit" class="button is-success is-rounded">Creaza</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
   </body>
 </html>
