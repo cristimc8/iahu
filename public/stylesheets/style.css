@@ -4,6 +4,7 @@
 	left: 0;
 	right: 0;
 	margin: auto;
+	color: #f0f0f0;
 }
 .room-announce{
 	margin-top: 80px !important;
@@ -111,8 +112,10 @@
 	margin-top: 7.5px;
 }
 #best-body{
-	background-image: url('/images/resources/doodle-pattern.png');
-	background-repeat: repeat;
+	background-image: url('/images/resources/nyan.jpg');
+	background-repeat: no-repeat;
 	height: 100vh;
-	background-color: #f0f0f0;
+}
+.navbar{
+	background-color: #2e4051;
 }
