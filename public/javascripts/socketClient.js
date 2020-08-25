@@ -103,3 +103,10 @@ function audioPlay(sound){
 	catch(err){
 	}
 }
+
+$(document).keypress(function(e){
+    if (e.which == 13){
+        $("#send-message").click();
+        return false;
+    }
+});
