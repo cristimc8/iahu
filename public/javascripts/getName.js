@@ -1,4 +1,4 @@
-
+const new_identity_form = document.getElementById('new-identity');
 var tmpName = getCookie('name');
 var tmpColor = getCookie('color');
 var tmpNameAndColor = [];
@@ -16,8 +16,8 @@ const color = nameAndColor.color;
 
 function generateNameAndColor(){
 	var first = ['Snowmobil', 'Lapte', 'Pamatuf', 'Cactus', 'Inspector', 'Mesteacan', 'Nuc', 'Mar', 'Laptop', 'BMW', 'Golf', 'Rotund', 'Matematician', 'Stalker'];
-	var second = ['Lucios', 'Inteligent', 'Lung', 'Mic', 'Stralucitor', 'Retard', 'Jupan', 'Interesant', 'Incepator', 'Surd', 'Schiop', 'Stirb', 'Cu Ochi Negru'];
-	var color = ['red', 'blue', 'cyan', 'black', 'yellow', 'green', 'purple'];
+	var second = ['Lucios', 'Inteligent', 'Lung', 'Mic', 'Stralucitor', 'Retard', 'Jupan', 'Interesant', 'Incepator', 'Surd', 'Schiop', 'Stirb', 'Cu Ochi Negru', 'Bipolar'];
+	var color = ['#f7584d', '#b679e8', 'cyan', '#5788eb', '#ede574', '#6ceba3', '#c55de8'];
 	const randomFirst = first[Math.floor(Math.random() * first.length)];
 	const randomSecond = second[Math.floor(Math.random() * second.length)];
 	const randomColor = color[Math.floor(Math.random() * color.length)];
@@ -46,3 +46,10 @@ function getCookie(name) {
   const parts = value.split(`; ${name}=`);
   if (parts.length === 2) return parts.pop().split(';').shift();
 }
+
+new_identity_form.addEventListener('submit', e => {
+	e.preventDefault();
+	document.cookie = 'name=null';
+	document.cookie = 'color=null';
+	location.reload();
+})

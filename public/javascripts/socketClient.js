@@ -12,52 +12,58 @@ tmpNameAndColor.push({
 });
 if(tmpName == null || tmpName == 'null' || tmpName === undefined){
 	tmpNameAndColor = generateNameAndColor();
-	rememberNameAndColor(tmpNameAndColor);
+	rememberNameAndColor(tmpNameAndColor[0]);
 }
-const nameAndColor = tmpNameAndColor;
+const nameAndColor = tmpNameAndColor[0];
 const name = nameAndColor.name;
 const color = nameAndColor.color;
 
-socket.emit('new-user', name, roomName);
+console.log(name);
+socket.emit('new-user', name, color, roomName);
 
 socket.on('chat-msg', data => {
-	appendMsg(data.name + ' > ' + data.message);
+	console.log(data);
+	appendMsg(data.name, data.color, data.message);
 	audioPlay('soundSwap');
 })
 
 socket.on('user-connected', data => {
-	appendMsg(data);
+	console.log(data);
+	appendMsg(data.name, data.color, 'S-a conectat');
 })
 
 socket.on('user-disconnected', data => {
-	appendMsg('L-am pierdut pe ' + data + ' :(');
+	appendMsg('Really Evolved AI','white', 'L-am pierdut pe ' + data + ' :(');
 })
 
-socket.on('buzz', name => {
-	appendMsg(name + ' BUZZED HARD');
+socket.on('buzz', data => {
+	appendBuzz(data.name, data.color, 'BUZZED HARD');
 	audioPlay('buzz');
 })
 
 messageForm.addEventListener('submit', e => {
 	e.preventDefault();
 	if(e.submitter.id == 'buzz'){
-		appendMsg(name + ' BUZZED HARD');
-		socket.emit('buzz', roomName);
+		appendBuzz(name, color, ' BUZZED HARD');
+		socket.emit('buzz', color, roomName);
 		audioPlay('buzz');
 		return;
 	}
 	const message = messageInput.value;
 	if(message == '') return;
-	appendMsg(name + ' > ' + message);
+	appendMsg(name, color, message);
 	audioPlay('soundSwap');
-	socket.emit('send-msg', message, roomName);
+	socket.emit('send-msg', color, message, roomName);
 	messageInput.value = '';
 })
 
-function appendMsg(message){
-	const msgElement = document.createElement('div');
-	msgElement.innerText = message;
-	messageSpace.append(msgElement);
+function appendMsg(name, color, message){
+	var element = $("<span style='color:"+color+"'>"+name+" > </span><span style='color:white;'>"+message+"</span><br>");
+	$('#msg-space').append(element);
+}
+function appendBuzz(name, color, message){
+	var element = $("<span class='is-size-5' style='color:"+color+"'>"+name+" > </span><span class='is-size-5' style='color:pink;'>"+message+"</span><br>");
+	$('#msg-space').append(element);
 }
 function getCookie(name) {
   const value = `; ${document.cookie}`;
@@ -66,8 +72,8 @@ function getCookie(name) {
 }
 function generateNameAndColor(){
 	var first = ['Snowmobil', 'Lapte', 'Pamatuf', 'Cactus', 'Inspector', 'Mesteacan', 'Nuc', 'Mar', 'Laptop', 'BMW', 'Golf', 'Rotund', 'Matematician', 'Stalker'];
-	var second = ['Lucios', 'Inteligent', 'Lung', 'Mic', 'Stralucitor', 'Retard', 'Jupan', 'Interesant', 'Incepator', 'Surd', 'Schiop', 'Stirb', 'Cu Ochi Negru'];
-	var color = ['red', 'blue', 'cyan', 'black', 'yellow', 'green', 'purple'];
+	var second = ['Lucios', 'Inteligent', 'Lung', 'Mic', 'Stralucitor', 'Retard', 'Jupan', 'Interesant', 'Incepator', 'Surd', 'Schiop', 'Stirb', 'Cu Ochi Negru', 'Bipolar'];
+	var color = ['#f7584d', '#b679e8', 'cyan', '#5788eb', '#ede574', '#6ceba3', '#c55de8'];
 	const randomFirst = first[Math.floor(Math.random() * first.length)];
 	const randomSecond = second[Math.floor(Math.random() * second.length)];
 	const randomColor = color[Math.floor(Math.random() * color.length)];

@@ -15,14 +15,14 @@ function encodeHTML(s) {
 }
 
 io.on('connection', socket => {
-	socket.emit('chat-msg', {message: 'Te-ai conectat la camera.', name: 'Really evolved AI'})
-	socket.on('send-msg', (message, roomName) => {
-		socket.to(roomName).broadcast.emit('chat-msg', {message: message, name: rooms[roomName].users[socket.id]});
+	socket.emit('chat-msg', {message: 'Te-ai conectat la camera.', name: 'Really evolved AI', color: 'white'})
+	socket.on('send-msg', (color, message, roomName) => {
+		socket.to(roomName).broadcast.emit('chat-msg', {message: message, name: rooms[roomName].users[socket.id], color: color});
 	})
-	socket.on('new-user', (name, roomName) => {
+	socket.on('new-user', (name, color, roomName) => {
 		socket.join(roomName);
 		rooms[roomName].users[socket.id] = name;
-		socket.to(roomName).broadcast.emit('user-connected', 'S-a conectat ' + name);
+		socket.to(roomName).broadcast.emit('user-connected', {name, color});
 	})
 	socket.on('disconnect', () => {
 		getUserRooms(socket).forEach(room => {
@@ -30,8 +30,8 @@ io.on('connection', socket => {
 			delete rooms[room].users[socket.id];
 		})
 	})
-	socket.on('buzz', (roomName) => {
-		socket.to(roomName).broadcast.emit('buzz', rooms[roomName].users[socket.id]);
+	socket.on('buzz', (color, roomName) => {
+		socket.to(roomName).broadcast.emit('buzz', {name: rooms[roomName].users[socket.id], color: color});
 	})
 })
 
