@@ -22,7 +22,7 @@ Also make sure to check <a href = 'https://racnetulcarpatilor.ro' target='_blank
 ```diff
 -Technical details
 ```
-Iahu runs on Node.js, more precisely node v12.12.0, but that does not really matters.
+Iahu runs on Node.js, more precisely node v13.12.0, but that does not really matters.
 Node.js is also faimous for its chat capabilities, thus me choosing it.
 
 ```diff
