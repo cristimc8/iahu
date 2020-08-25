@@ -2,7 +2,7 @@
 This is 
 ```diff
 @@Iahu mesingear@@
-+Use it to send BUZZ and other stuff like that.+
++Use it to send BUZZ and other stuff like that.
 ```
 
 
@@ -18,3 +18,17 @@ Feel free to do whatever u want with the code, if u like Node.js be my guest.
 Also if any1 reading this has a project in their mind, i'd love joining a team and other shit like that. UBB rules.
 
 Also make sure to check <a href = 'https://racnetulcarpatilor.ro' target='_blank'>Racnetul Carpatilor</a>, I'd appreaciate someone seeing my bad jokes :)
+
+```diff
+-Technical details
+```
+Iahu runs on Node.js, more precisely node v12.12.0, but that does not really matters.
+Node.js is also faimous for its chat capabilities, thus me choosing it.
+
+```diff
+!To run locally
+```
+Install node.js, npm
+then get the project locally, go to the root folder and then do: npm install
+After node modules are up, do: nodemon start
+good luck have fun
