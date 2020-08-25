@@ -30,5 +30,7 @@ Node.js is also faimous for its chat capabilities, thus me choosing it.
 ```
 Install node.js, npm
 then get the project locally, go to the root folder and then do: npm install
+
 After node modules are up, do: nodemon start
+
 good luck have fun
