@@ -1,8 +1,9 @@
 # Iahu
 This is 
 ```diff
-@@Iahu mesingear@@
+@@Iahu messenger@@
 +Use it to send BUZZ and other stuff like that.
++Simple web chat app using node js and socket.io
 ```
 
 
